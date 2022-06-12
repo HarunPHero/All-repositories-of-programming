@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript game</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+</head>
+<body onclick="jump()" >
+<button class="btn btn-danger" id="startbtn">start</button>
+<button class="btn btn-success" onclick="javascript:location.reload();">Reload</button>
+    <div id="game">
+
+        <div id="sun"></div>
+        <div id="character"><img style="width: 80px;" src="runner.png" alt=""></div>
+        <div id="block"></div>
+        <div id="ground">
+           
+            
+        </div>
+    </div>
+    <button onclick="jump()" class="btn btn-primary">Jump</button>
+    <div id="loader"class="loader-container">
+        <img style="width: 500px;"src="https://i.pinimg.com/originals/92/69/13/92691384afc6eed3e660faf9e3ef1ed1.gif" alt="">
+    </div>
+    <div id="loader2"class="loader-container">
+        <img style="width: 100px;"src="https://media1.giphy.com/media/2krGzaDAdRwDq6zOFz/giphy.gif?cid=790b7611fbd8721c44b7f9fd789ea3fccfaab3a82f5a0300&rid=giphy.gif&ct=g" alt="">
+    </div>
+    
+    <script src="main.js"></script>
+    
+</body>
+</html>

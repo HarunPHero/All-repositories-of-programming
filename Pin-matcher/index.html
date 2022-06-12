@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pin Generator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="pin-generator half-width">
+                    <input id="pin" class="form-control" type="text">
+                    <button onclick="generatePin()" class="generate-btn">Generate Pin</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-section half-width">
+                    <input id="typed-pin" class="form-control" type="text">
+                    <div class="numbers">
+                        <div id="digit-container" class="calc-body">
+                            <div class="calc-button-row">
+                                <div class="button">7</div>
+                                <div class="button">8</div>
+                                <div class="button">9</div>
+                            </div>
+                            <div class="calc-button-row">
+                                <div class="button">4</div>
+                                <div class="button">5</div>
+                                <div class="button">6</div>
+                            </div>
+                            <div class="calc-button-row">
+                                <div class="button">1</div>
+                                <div class="button">2</div>
+                                <div class="button">3</div>
+                            </div>
+                            <div class="calc-button-row">
+                                <div class="button">
+                                    < </div>
+                                        <div class="button">0</div>
+                                        <div class="button">C</div>
+                                </div>
+                                <div>
+                                    <button onclick="verifyPin()" type="submit" class="submit-btn">Submit</button>
+                                    <p class="action-left">3 try left</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="notify-section">
+                    <p id="bd-news" class="notify">❌ Pin Didn't Match, Please try again</p>
+                    <p id="gd-news" class="notify">✅ Pin Matched... Secret door is opening for you</p>
+                </div>
+            </div>
+            <script>
+                function getpin() {
+                    const random = Math.random() * 10000;
+                    const pin = (random + '').split('.')[0];
+                    if (pin.length === 4) {
+                        return pin;
+                    }
+                    else {
+                        console.log('shorter pin', pin)
+                        return getpin()
+
+                    }
+                }
+                function generatePin() {
+                    const pinInput = document.getElementById('pin')
+                    pinInput.value = getpin();
+
+
+
+                }
+                const buttonContainer = document.getElementById('digit-container').addEventListener('click', function (event) {
+                    const digit = event.target.innerText;
+                    if (isNaN(digit)) {
+                        //handle backspace
+                        //handle clear
+                        if (digit === 'C') {
+                            const typedInput = document.getElementById('typed-pin');
+                            typedInput.value = '';
+
+
+                        }
+                    }
+                    else {
+                        const typedInput = document.getElementById('typed-pin');
+                        typedInput.value = typedInput.value + digit
+
+                    }
+
+                })
+                function verifyPin() {
+                    const pin = document.getElementById('pin').value
+                    const typedPin = document.getElementById('typed-pin').value;
+                    if (pin === typedPin) {
+                        displaymatchResult('gd-news', 'bd-news')
+
+                    }
+                    else {
+                        displaymatchResult('bd-news', 'gd-news')
+                    }
+                    function displaymatchResult(correctStatus, incorrectStatus) {
+                        const correct = document.getElementById(correctStatus).style.display = "block"
+                        const incorrect = document.getElementById(incorrectStatus).style.display = "none"
+
+
+
+                    }
+                }
+
+
+
+
+
+            </script>
+</body>
+
+</html>
